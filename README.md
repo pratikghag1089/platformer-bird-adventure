@@ -36,3 +36,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 1 — #1: Set up project structure and configuration
 
 **APPROVE** — The implementation fully satisfies all acceptance criteria. config.py contains all required constants including screen dimensions, physics parameters, colors, and font sizes. main.py properly initializes Pygame, sets up a 60 FPS game loop, handles QUIT and ESC events, and displays a window with the correct title and background color.
+
+### Cycle 2 — #2: Implement Bird class with physics and controls
+
+**REQUEST_CHANGES** — The Bird class implementation meets most acceptance criteria, including position, velocity, state machine, gravity, ducking with hitbox pinning, and screen boundaries. However, there is a critical bug in the jump() method where the state is set to 'jumping' before checking for ducking, preventing the unduck logic from executing when jumping from a ducking state.
