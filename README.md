@@ -44,3 +44,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 3 — #3: Create obstacle generation and movement system
 
 **APPROVE** — The implementation fully meets all acceptance criteria for the obstacle generation and movement system. The ObstacleManager class correctly spawns pipe pairs with randomized gaps, moves them left at constant speed, removes off-screen obstacles, and tracks passed obstacles for scoring. All required constants are properly defined in config.py.
+
+### Cycle 4 — #4: Implement collision detection and game state management
+
+**REQUEST_CHANGES** — The Game class and collision detection meet all acceptance criteria, but main.py is not updated to use the Game class, making the game non-functional. Additionally, there is a bug in bird.py where the jump method does not properly handle unducking when ducking.
