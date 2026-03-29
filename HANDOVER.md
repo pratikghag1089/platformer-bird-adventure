@@ -1,30 +1,33 @@
 # HANDOVER.md
 
 ## 1. What Was Built
-A minimalist 2D platformer game where a bird navigates through pipe obstacles. The core obstacle generation and movement system has been fully implemented and approved. The bird can currently be positioned and moved, but player controls, collision detection, scoring, and game state management are not yet implemented.
+A minimalist 2D platformer game where the player controls a bird that must navigate through gaps in moving pipe obstacles. The game features three states: a menu screen, active gameplay, and a game-over screen with score display. Players can jump (including a double-jump) and duck to adjust the bird's hitbox, with the goal of surviving as long as possible to achieve a high score.
 
 ## 2. Getting Started
-**Prerequisites:** Python 3.x  
-**Install:** `pip install pygame`  
-**Run:** `python main.py`  
-**Config:** No environment variables needed. All constants are in `config.py`.
+**Prerequisites:** Python 3.x installed on your system.
+
+1. **Install dependencies:**
+   ```bash
+   pip install pygame
+   ```
+2. **Run the game:**
+   ```bash
+   python main.py
+   ```
+3. **Controls:**
+   - **SPACE/UP Arrow:** Jump (from menu or during gameplay)
+   - **DOWN Arrow:** Duck (during gameplay)
+   - **R:** Restart (from game-over screen)
+   - **ESC:** Quit
 
 ## 3. Project Status
 
 | Issue | Title | Status |
 |-------|-------|--------|
-| #3 | Create obstacle generation and movement system | ✅ Done |
-| #4 | Implement bird physics and player controls | ❌ Not Started |
-| #5 | Add collision detection system | ❌ Not Started |
-| #6 | Create game state management and scoring | ❌ Not Started |
-| #9 | Build renderer and HUD display | ❌ Not Started |
+| #34 | Remove UP arrow restart functionality from game over state | ✅ Done |
 
 ## 4. Known Issues
 None — all implemented features passed QA review.
 
 ## 5. How to Resume
-To continue development, run:
-
-    python agency.py --resume platformer-bird-adventure --cycles 3
-
-This will pick up open issues and run up to 3 more dev cycles.
+No further development cycles are required. All issues have been resolved and approved.
