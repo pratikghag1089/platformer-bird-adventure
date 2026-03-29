@@ -64,3 +64,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 8 — #12: Integrate Game class into main loop
 
 **APPROVE** — The implementation fully meets all acceptance criteria: main.py imports and instantiates Game, calls Game.update() each frame, handles input via InputHandler with proper action routing, and reflects all game state transitions in the loop. The code is well-structured with clear separation of concerns.
+
+### Cycle 9 — #13: Fix bird jump method to handle unducking
+
+**APPROVE** — The implementation correctly reorders the jump logic to unduck before applying the jump impulse and updating state. All acceptance criteria are met: ducking is properly reversed, jump is applied after unducking, and state transitions to 'jumping' correctly.
