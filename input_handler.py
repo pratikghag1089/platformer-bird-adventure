@@ -25,15 +25,21 @@ class InputHandler:
                 actions.append("QUIT")
             
             elif event.type == pygame.KEYDOWN:
-                # Jump keys (SPACE or UP)
-                if event.key in (pygame.K_SPACE, pygame.K_UP):
+                # SPACE key: start, jump, or restart
+                if event.key == pygame.K_SPACE:
                     if game_state == config.STATE_MENU:
                         actions.append("START")
                     elif game_state == config.STATE_PLAYING:
                         actions.append("JUMP")
                     elif game_state == config.STATE_GAME_OVER:
-                        # In game over, SPACE also restarts for convenience
                         actions.append("RESTART")
+                
+                # UP arrow key: start or jump (NOT restart)
+                elif event.key == pygame.K_UP:
+                    if game_state == config.STATE_MENU:
+                        actions.append("START")
+                    elif game_state == config.STATE_PLAYING:
+                        actions.append("JUMP")
                 
                 # Duck key (DOWN)
                 elif event.key == pygame.K_DOWN:
