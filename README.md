@@ -56,3 +56,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 6 — #6: Implement input handling and integrate all components
 
 **REQUEST_CHANGES** — The implementation meets most acceptance criteria with proper input handling and component integration. However, there's a critical bug in the bird's jump() method where the ducking state check occurs after setting state to 'jumping', preventing proper unducking when jumping while ducking. Additionally, the restart key mapping doesn't match the issue requirement (R key) in the game over screen.
+
+### Cycle 7 — #9: Fix jump method to handle unducking properly
+
+**APPROVE** — The implementation correctly modifies the jump() method to check for ducking state before changing to jumping state, ensuring the bird unducks first (restores normal height) before applying the jump impulse. The jumps_remaining counter is decremented correctly regardless of ducking state. All acceptance criteria are met without introducing any new bugs.
