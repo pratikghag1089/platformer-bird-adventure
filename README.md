@@ -30,3 +30,9 @@ _See `architecture.md` for the full design._
 ---
 
 _Development log will be appended as issues are completed._
+
+## Development Log
+
+### Cycle 1 — #1: Set up project structure and configuration
+
+**APPROVE** — The implementation fully satisfies all acceptance criteria. config.py contains all required constants including screen dimensions, physics parameters, colors, and font sizes. main.py properly initializes Pygame, sets up a 60 FPS game loop, handles QUIT and ESC events, and displays a window with the correct title and background color.
