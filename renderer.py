@@ -44,9 +44,9 @@ class Renderer:
         bird_rect = bird.get_rect()
 
         # Select color based on bird state
-        if bird.is_jumping:
+        if bird.state == 'jumping':
             color = config.BIRD_JUMP_COLOR
-        elif bird.is_ducking:
+        elif bird.state == 'ducking':
             color = config.BIRD_DUCK_COLOR
         else:
             color = config.BIRD_COLOR
