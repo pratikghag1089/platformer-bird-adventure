@@ -92,3 +92,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 15 — #27: Update renderer to use bird color constants from config
 
 **REQUEST_CHANGES** — The implementation correctly adds the color constants to config.py, but the renderer's _draw_bird method references non-existent bird attributes (is_jumping/is_ducking) instead of using the bird.state string. This will cause an AttributeError at runtime, preventing the game from running.
+
+### Cycle 16 — #30: Remove UP arrow key restart functionality in game over state
+
+**REQUEST_CHANGES** — The implementation still allows UP arrow to restart the game in game over state, violating the acceptance criteria. The input_handler.py file incorrectly groups SPACE and UP together for restart actions. The restart prompt text is correct, but the input logic needs modification.
