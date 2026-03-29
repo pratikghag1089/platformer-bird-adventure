@@ -68,3 +68,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 9 — #13: Fix bird jump method to handle unducking
 
 **APPROVE** — The implementation correctly reorders the jump logic to unduck before applying the jump impulse and updating state. All acceptance criteria are met: ducking is properly reversed, jump is applied after unducking, and state transitions to 'jumping' correctly.
+
+### Cycle 10 — #15: Fix bird state logic in jump method
+
+**APPROVE** — The implementation correctly fixes the jump method's state transition logic. When ducking, the bird now properly unducks before applying the jump impulse, and jumps_remaining is decremented appropriately in all cases. The code meets all acceptance criteria without introducing new bugs.
