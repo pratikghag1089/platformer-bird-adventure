@@ -6,6 +6,7 @@ SCREEN_HEIGHT = 600
 
 # Physics
 GRAVITY = 0.5
+JUMP_FORCE = -10  # Negative because up is negative y in Pygame
 BIRD_SPEED = 3
 OBSTACLE_SPEED = 3
 
