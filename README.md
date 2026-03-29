@@ -100,3 +100,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 17 — #32: Fix bird state check in renderer's _draw_bird method
 
 **APPROVE** — The renderer's _draw_bird method now correctly checks the bird's state string to determine the color, fixing the AttributeError. All acceptance criteria are met.
+
+### Cycle 18 — #34: Remove UP arrow restart functionality from game over state
+
+**APPROVE** — The implementation correctly removes UP arrow restart functionality from game over state while preserving UP arrow for jumping during gameplay and starting from menu. Only SPACE and R keys now trigger restart in game over state, meeting all acceptance criteria.
