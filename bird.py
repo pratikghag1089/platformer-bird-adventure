@@ -53,13 +53,15 @@ class Bird:
     def jump(self):
         """Handle jump with double jump capability"""
         if self.jumps_remaining > 0:
-            # If ducking, unduck first (restores normal height and sets state to normal)
+            # First, unduck if currently ducking (restore normal height)
             if self.state == "ducking":
                 self.unduck()
             
-            # Apply jump impulse (negative because up is negative y)
+            # Apply jump impulse after unducking
             self.vy = config.JUMP_FORCE
             self.jumps_remaining -= 1
+            
+            # Update state to jumping
             self.state = "jumping"
     
     def duck(self):
