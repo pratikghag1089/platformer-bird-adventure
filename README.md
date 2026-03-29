@@ -96,3 +96,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 16 — #30: Remove UP arrow key restart functionality in game over state
 
 **REQUEST_CHANGES** — The implementation still allows UP arrow to restart the game in game over state, violating the acceptance criteria. The input_handler.py file incorrectly groups SPACE and UP together for restart actions. The restart prompt text is correct, but the input logic needs modification.
+
+### Cycle 17 — #32: Fix bird state check in renderer's _draw_bird method
+
+**APPROVE** — The renderer's _draw_bird method now correctly checks the bird's state string to determine the color, fixing the AttributeError. All acceptance criteria are met.
