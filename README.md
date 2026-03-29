@@ -60,3 +60,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 7 — #9: Fix jump method to handle unducking properly
 
 **APPROVE** — The implementation correctly modifies the jump() method to check for ducking state before changing to jumping state, ensuring the bird unducks first (restores normal height) before applying the jump impulse. The jumps_remaining counter is decremented correctly regardless of ducking state. All acceptance criteria are met without introducing any new bugs.
+
+### Cycle 8 — #12: Integrate Game class into main loop
+
+**APPROVE** — The implementation fully meets all acceptance criteria: main.py imports and instantiates Game, calls Game.update() each frame, handles input via InputHandler with proper action routing, and reflects all game state transitions in the loop. The code is well-structured with clear separation of concerns.
