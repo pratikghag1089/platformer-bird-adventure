@@ -76,3 +76,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 11 — #16: Integrate renderer with main game loop
 
 **APPROVE** — The implementation correctly integrates the Game and Renderer classes into the main game loop. All acceptance criteria are met: Game and Renderer are instantiated, game state is passed to the renderer each frame, and the game loop properly updates and renders the game state.
+
+### Cycle 12 — #17: Add missing bird color constants to config
+
+**REQUEST_CHANGES** — The config constants have been correctly added and updated as specified, but the renderer still uses hard-coded color values for jumping and ducking states instead of referencing the new config constants.
