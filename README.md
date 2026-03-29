@@ -72,3 +72,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 10 — #15: Fix bird state logic in jump method
 
 **APPROVE** — The implementation correctly fixes the jump method's state transition logic. When ducking, the bird now properly unducks before applying the jump impulse, and jumps_remaining is decremented appropriately in all cases. The code meets all acceptance criteria without introducing new bugs.
+
+### Cycle 11 — #16: Integrate renderer with main game loop
+
+**APPROVE** — The implementation correctly integrates the Game and Renderer classes into the main game loop. All acceptance criteria are met: Game and Renderer are instantiated, game state is passed to the renderer each frame, and the game loop properly updates and renders the game state.
