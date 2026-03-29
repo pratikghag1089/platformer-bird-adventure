@@ -132,3 +132,7 @@ The changes fix the reported AttributeError by ensuring the Renderer class has t
 ### Cycle 20 — #39: Add missing pygame import in bird.py
 
 **APPROVE** — The missing pygame import in bird.py has been added, satisfying the first acceptance criterion. The import ensures that pygame.Rect in the get_rect method will not raise a NameError, meeting the second criterion. No critical bugs or additional issues were introduced by this change.
+
+### Cycle 21 — #40: Fix runtime crash on startup
+
+**APPROVE** — The crash was caused by a missing import of the pygame module in bird.py. The provided code adds the necessary import, resolving the NameError. The game should now start without the reported crash.
