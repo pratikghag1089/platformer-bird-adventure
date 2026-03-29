@@ -3,94 +3,99 @@ import config
 
 
 class Renderer:
-    """Handles all drawing operations for the game."""
-
     def __init__(self, screen):
         self.screen = screen
-        self.font_large = pygame.font.Font(None, config.FONT_SIZE_LARGE)
-        self.font_medium = pygame.font.Font(None, config.FONT_SIZE_MEDIUM)
-        self.font_small = pygame.font.Font(None, config.FONT_SIZE_SMALL)
+        self.font = pygame.font.SysFont(None, config.FONT_SIZE)
+        self.large_font = pygame.font.SysFont(None, config.FONT_SIZE * 2)
 
-    def draw(self, game_state, bird, obstacles, score):
-        """Main draw call - renders entire frame based on current game state."""
-        self.screen.fill(config.SKY_COLOR)
+    def draw_game(self, bird, obstacles, score, game_state):
+        """Main draw entry point — dispatches based on game state."""
+        self.screen.fill(config.COLOR_SKY)
 
-        # Draw obstacles (pipes)
-        for obstacle in obstacles:
-            self._draw_pipe(obstacle.top_rect, is_top=True)
-            self._draw_pipe(obstacle.bottom_rect, is_top=False)
-
-        # Draw bird
-        self._draw_bird(bird)
-
-        # Draw HUD
-        self._draw_score(score)
-
-        # Draw overlays based on game state
-        if game_state == config.STATE_GAME_OVER:
-            self._draw_game_over(score)
-        elif game_state == config.STATE_MENU:
+        if game_state == "MENU":
             self._draw_menu()
+        elif game_state == "PLAYING":
+            self._draw_obstacles(obstacles)
+            self._draw_bird(bird)
+            self._draw_score(score)
+        elif game_state == "GAME_OVER":
+            self._draw_obstacles(obstacles)
+            self._draw_bird(bird)
+            self._draw_score(score)
+            self._draw_game_over_overlay(score)
 
-    def _draw_pipe(self, pipe_rect, is_top):
-        """Draw a single pipe with highlight accent."""
-        pygame.draw.rect(self.screen, config.PIPE_COLOR, pipe_rect)
-        # Highlight strip on left edge
-        highlight_rect = pygame.Rect(pipe_rect.x, pipe_rect.y, 10, pipe_rect.height)
-        pygame.draw.rect(self.screen, config.PIPE_HIGHLIGHT, highlight_rect)
+    # ------------------------------------------------------------------
+    # Private helpers
+    # ------------------------------------------------------------------
 
     def _draw_bird(self, bird):
-        """Draw the bird with color based on current state."""
-        bird_rect = bird.get_rect()
+        rect = bird.get_rect()
+        color = config.COLOR_BIRD
+        if bird.is_ducking:
+            color = config.COLOR_BIRD_DUCK
+        elif bird.velocity_y < 0:
+            color = config.COLOR_BIRD_JUMP
+        pygame.draw.rect(self.screen, color, rect)
+        # Eye
+        eye_x = rect.right - 6
+        eye_y = rect.top + 6
+        pygame.draw.circle(self.screen, config.COLOR_EYE, (eye_x, eye_y), 3)
 
-        # Select color based on bird state
-        if bird.state == 'jumping':
-            color = config.BIRD_JUMP_COLOR
-        elif bird.state == 'ducking':
-            color = config.BIRD_DUCK_COLOR
-        else:
-            color = config.BIRD_COLOR
-
-        # Draw bird body
-        pygame.draw.rect(self.screen, color, bird_rect)
-        # Draw outline
-        pygame.draw.rect(self.screen, (0, 0, 0), bird_rect, 2)
+    def _draw_obstacles(self, obstacles):
+        for obs in obstacles:
+            top_rect = pygame.Rect(obs["x"], 0, config.OBSTACLE_WIDTH, obs["gap_y"])
+            bottom_rect = pygame.Rect(
+                obs["x"],
+                obs["gap_y"] + config.OBSTACLE_GAP,
+                config.OBSTACLE_WIDTH,
+                config.SCREEN_HEIGHT - (obs["gap_y"] + config.OBSTACLE_GAP),
+            )
+            pygame.draw.rect(self.screen, config.COLOR_PIPE, top_rect)
+            pygame.draw.rect(self.screen, config.COLOR_PIPE, bottom_rect)
+            # Pipe lips
+            lip_h = 8
+            pygame.draw.rect(
+                self.screen,
+                config.COLOR_PIPE_DARK,
+                (obs["x"] - 4, obs["gap_y"] - lip_h, config.OBSTACLE_WIDTH + 8, lip_h),
+            )
+            pygame.draw.rect(
+                self.screen,
+                config.COLOR_PIPE_DARK,
+                (
+                    obs["x"] - 4,
+                    obs["gap_y"] + config.OBSTACLE_GAP,
+                    config.OBSTACLE_WIDTH + 8,
+                    lip_h,
+                ),
+            )
 
     def _draw_score(self, score):
-        """Draw current score in top-right corner."""
-        score_text = self.font_small.render(f"Score: {score}", True, config.SCORE_COLOR)
-        score_rect = score_text.get_rect(topright=(config.SCREEN_WIDTH - 20, 20))
-        self.screen.blit(score_text, score_rect)
-
-    def _draw_game_over(self, score):
-        """Draw game over overlay with final score and restart prompt."""
-        # Semi-transparent overlay
-        overlay = pygame.Surface((config.SCREEN_WIDTH, config.SCREEN_HEIGHT))
-        overlay.fill((0, 0, 0))
-        overlay.set_alpha(128)
-        self.screen.blit(overlay, (0, 0))
-
-        # Game Over text
-        game_over_text = self.font_large.render("GAME OVER", True, config.GAME_OVER_COLOR)
-        game_over_rect = game_over_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2 - 50))
-        self.screen.blit(game_over_text, game_over_rect)
-
-        # Final score
-        score_text = self.font_medium.render(f"Final Score: {score}", True, config.SCORE_COLOR)
-        score_rect = score_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2 + 20))
-        self.screen.blit(score_text, score_rect)
-
-        # Restart prompt
-        restart_text = self.font_small.render("Press R to restart (SPACE also works)", True, config.SCORE_COLOR)
-        restart_rect = restart_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2 + 70))
-        self.screen.blit(restart_text, restart_rect)
+        text = self.font.render(f"Score: {score}", True, config.COLOR_TEXT)
+        rect = text.get_rect(topright=(config.SCREEN_WIDTH - 16, 16))
+        self.screen.blit(text, rect)
 
     def _draw_menu(self):
-        """Draw main menu screen."""
-        title_text = self.font_large.render("Platformer Bird Adventure", True, config.BIRD_COLOR)
-        title_rect = title_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2 - 50))
-        self.screen.blit(title_text, title_rect)
+        title = self.large_font.render("Platformer Bird", True, config.COLOR_TEXT)
+        prompt = self.font.render("Press SPACE to start", True, config.COLOR_TEXT)
+        title_rect = title.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 3))
+        prompt_rect = prompt.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2))
+        self.screen.blit(title, title_rect)
+        self.screen.blit(prompt, prompt_rect)
 
-        start_text = self.font_small.render("Press SPACE to Start", True, config.SCORE_COLOR)
-        start_rect = start_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2 + 30))
-        self.screen.blit(start_text, start_rect)
+    def _draw_game_over_overlay(self, score):
+        overlay = pygame.Surface((config.SCREEN_WIDTH, config.SCREEN_HEIGHT), pygame.SRCALPHA)
+        overlay.fill(config.COLOR_OVERLAY)
+        self.screen.blit(overlay, (0, 0))
+
+        go_text = self.large_font.render("Game Over", True, config.COLOR_TEXT)
+        score_text = self.font.render(f"Final Score: {score}", True, config.COLOR_TEXT)
+        restart_text = self.font.render("Press R to restart", True, config.COLOR_TEXT)
+
+        go_rect = go_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 3))
+        score_rect = score_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2))
+        restart_rect = restart_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT * 2 // 3))
+
+        self.screen.blit(go_text, go_rect)
+        self.screen.blit(score_text, score_rect)
+        self.screen.blit(restart_text, restart_rect)
