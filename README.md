@@ -40,3 +40,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 2 — #2: Implement Bird class with physics and controls
 
 **REQUEST_CHANGES** — The Bird class implementation meets most acceptance criteria, including position, velocity, state machine, gravity, ducking with hitbox pinning, and screen boundaries. However, there is a critical bug in the jump() method where the state is set to 'jumping' before checking for ducking, preventing the unduck logic from executing when jumping from a ducking state.
+
+### Cycle 3 — #3: Create obstacle generation and movement system
+
+**APPROVE** — The implementation fully meets all acceptance criteria for the obstacle generation and movement system. The ObstacleManager class correctly spawns pipe pairs with randomized gaps, moves them left at constant speed, removes off-screen obstacles, and tracks passed obstacles for scoring. All required constants are properly defined in config.py.
