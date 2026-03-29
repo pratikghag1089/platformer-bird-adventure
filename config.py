@@ -19,7 +19,8 @@ PIPE_MIN_HEIGHT = 50          # Minimum pipe height (ensures gap is always passa
 # Colors
 SKY_COLOR = (135, 206, 235)  # Light blue
 BIRD_COLOR = (255, 215, 0)    # Gold
-BIRD_DUCK_COLOR = (255, 165, 0)  # Orange
+BIRD_JUMP_COLOR = (255, 165, 0)  # Orange
+BIRD_DUCK_COLOR = (180, 140, 0)  # Dark yellow
 PIPE_COLOR = (34, 139, 34)    # Forest green
 PIPE_HIGHLIGHT = (50, 205, 50)  # Lime green
 SCORE_COLOR = (255, 255, 255)  # White
