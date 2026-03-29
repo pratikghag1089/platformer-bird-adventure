@@ -81,7 +81,7 @@ class Renderer:
         self.screen.blit(score_text, score_rect)
 
         # Restart prompt
-        restart_text = self.font_small.render("Press R to Restart", True, config.SCORE_COLOR)
+        restart_text = self.font_small.render("Press R to restart (SPACE also works)", True, config.SCORE_COLOR)
         restart_rect = restart_text.get_rect(center=(config.SCREEN_WIDTH // 2, config.SCREEN_HEIGHT // 2 + 70))
         self.screen.blit(restart_text, restart_rect)
 
