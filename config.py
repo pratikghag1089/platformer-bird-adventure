@@ -10,6 +10,12 @@ JUMP_FORCE = -10  # Negative because up is negative y in Pygame
 BIRD_SPEED = 3
 OBSTACLE_SPEED = 3
 
+# Obstacle configuration
+OBSTACLE_SPAWN_INTERVAL = 90  # Frames between spawns (1.5 seconds at 60 FPS)
+OBSTACLE_GAP_SIZE = 150       # Vertical gap between pipes in pixels
+PIPE_WIDTH = 80               # Width of each pipe
+PIPE_MIN_HEIGHT = 50          # Minimum pipe height (ensures gap is always passable)
+
 # Colors
 SKY_COLOR = (135, 206, 235)  # Light blue
 BIRD_COLOR = (255, 215, 0)    # Gold
