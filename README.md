@@ -88,3 +88,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 14 — #20: Fix restart key mapping in game over screen
 
 **REQUEST_CHANGES** — The implementation correctly adds R key restart functionality and documents SPACE as a convenience feature. However, the UP arrow key also triggers restart in the game over state but is not mentioned in the restart prompt text, creating a mismatch between actual key bindings and displayed instructions.
+
+### Cycle 15 — #27: Update renderer to use bird color constants from config
+
+**REQUEST_CHANGES** — The implementation correctly adds the color constants to config.py, but the renderer's _draw_bird method references non-existent bird attributes (is_jumping/is_ducking) instead of using the bird.state string. This will cause an AttributeError at runtime, preventing the game from running.
