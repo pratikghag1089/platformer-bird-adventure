@@ -84,3 +84,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 13 — #19: Fix bird jump() method ducking state logic
 
 **APPROVE** — The implementation correctly moves the ducking state check before setting state to 'jumping' in the jump() method. The unduck() method is now properly called when jumping while ducking, restoring the bird's normal height. All acceptance criteria are met with no critical bugs found.
+
+### Cycle 14 — #20: Fix restart key mapping in game over screen
+
+**REQUEST_CHANGES** — The implementation correctly adds R key restart functionality and documents SPACE as a convenience feature. However, the UP arrow key also triggers restart in the game over state but is not mentioned in the restart prompt text, creating a mismatch between actual key bindings and displayed instructions.
