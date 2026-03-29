@@ -80,3 +80,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 12 — #17: Add missing bird color constants to config
 
 **REQUEST_CHANGES** — The config constants have been correctly added and updated as specified, but the renderer still uses hard-coded color values for jumping and ducking states instead of referencing the new config constants.
+
+### Cycle 13 — #19: Fix bird jump() method ducking state logic
+
+**APPROVE** — The implementation correctly moves the ducking state check before setting state to 'jumping' in the jump() method. The unduck() method is now properly called when jumping while ducking, restoring the bird's normal height. All acceptance criteria are met with no critical bugs found.
