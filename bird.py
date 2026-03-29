@@ -54,6 +54,8 @@ class Bird:
         """Handle jump with double jump capability"""
         if self.jumps_remaining > 0:
             # If ducking, unduck first (restores normal height and sets state to normal)
+            # This MUST happen before setting state to 'jumping' so that unduck() can
+            # properly detect the ducking state and restore the bird's normal height
             if self.state == "ducking":
                 self.unduck()
             
