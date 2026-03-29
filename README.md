@@ -52,3 +52,7 @@ _Development log will be appended as issues are completed._
 ### Cycle 5 — #5: Create renderer and visual elements
 
 **REQUEST_CHANGES** — The renderer implementation meets most acceptance criteria with proper visual elements, but has a critical bug in bird state handling and missing integration with the main game loop. The bird's jump method incorrectly changes state after checking ducking, and the renderer isn't being used in main.py.
+
+### Cycle 6 — #6: Implement input handling and integrate all components
+
+**REQUEST_CHANGES** — The implementation meets most acceptance criteria with proper input handling and component integration. However, there's a critical bug in the bird's jump() method where the ducking state check occurs after setting state to 'jumping', preventing proper unducking when jumping while ducking. Additionally, the restart key mapping doesn't match the issue requirement (R key) in the game over screen.
